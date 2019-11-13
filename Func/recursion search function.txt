@@ -1,0 +1,51 @@
+// 2:52 PM 10/18/2017
+// recursion sesrch function
+// binary search
+// pre list[first...last] is sorted
+// post if target in list[first...last] returns index of where it is, else returns -1
+int search(int list[], int target, int first, int last)
+{
+	int middleIndex;
+	if(first == last)
+	{
+		if(target == list[first]){
+			return first;
+		} else{
+			return -1;
+		}
+	} else{
+		middleIndex = (first + last) / 2;
+		if(target == list[middleIndex]){
+			return middleIndex;
+		} else if(target < list[middleIndex]){
+			return search(list, target, first, middleIndex - 1);
+		} else{
+			return search(list, target, middleIndex + 1, last);
+		}
+	}
+}
+
+int search(int list[], int target, int first, int last) //** version 2 **//
+{
+	int middleIndex;
+	if(first > last){
+		return -1;
+	} else{
+		middleIndex = (first + last) / 2;
+		if(target == list[middleIndex]){
+			return middleIndex;
+		} else if(target < list[middleIndex]){
+			return search(list, target, first, middleIndex - 1);
+		} else{
+			return search(list, target, middleIndex + 1, last);
+		}
+	}
+}
+
+/*
+n = 2^k
+work k + 2
+log2n + 2
+log-time
+
+*/
